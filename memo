@@ -1,8 +1,8 @@
 #!/bin/bash
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
-KEYWORD_PATH="$SCRIPT_DIR/docs/$1"
-THEME_PATH="$SCRIPT_DIR/docs/$1/$2"
+KEYWORD_PATH="$SCRIPT_DIR/docs/$1.md"
+THEME_PATH="$SCRIPT_DIR/docs/$1/$2.md"
 
 usage() {
     exec >&2
