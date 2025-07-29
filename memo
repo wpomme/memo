@@ -20,7 +20,7 @@ $ memo list         # List all available topics
 
 list() {
     echo "Available topics:"
-    for topic in $SCRIPT_DIR/memo-text/*; do
+    for topic in $SCRIPT_DIR/docs/*; do
         if [ -d "$topic" ]; then
             echo "  $(basename $topic)/ (has subtopics)"
             for subtopic in "$topic"/*; do
@@ -35,7 +35,7 @@ list() {
 show_topic() {
     local topic=$1
     local subtopic=$2
-    local topic_path="$SCRIPT_DIR/memo-text/$topic"
+    local topic_path="$SCRIPT_DIR/docs/$topic"
     
     if [ -d "$topic_path" ]; then
         if [ -n "$subtopic" ]; then
