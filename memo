@@ -19,46 +19,53 @@ $ memo list         # 参照できるメモの一覧を表示する
     exit 1
 }
 
-if [ $# -eq 0 ]; then
-    usage
-    exit 1
-fi
-
-if [ $# -eq 1 ]; then
-    case $1 in
-        help)
-            usage
-            ;;
-        list)
-            echo "メモ一覧"
-            for keyword in $SCRIPT_DIR/docs/*; do
-                if [ -d "$keyword" ]; then
-                    echo "  $(basename $keyword)/ (has subtopics)"
-                    for subtopic in "$keyword"/*; do
-                        [ -f "$subtopic" ] && echo "    $(basename $subtopic)"
-                    done
-                elif [ -f "$keyword" ]; then
-                    echo "  $(basename $keyword)"
+case $# in
+    0)
+        usage
+        exit 1
+        ;;
+    1)
+        case $1 in
+            help)
+                usage
+                ;;
+            list)
+                echo "メモ一覧"
+                for keyword in $SCRIPT_DIR/docs/*; do
+                    if [ -d "$keyword" ]; then
+                        echo "  $(basename $keyword)/ (has subtopics)"
+                        for subtopic in "$keyword"/*; do
+                            [ -f "$subtopic" ] && echo "    $(basename $subtopic)"
+                        done
+                    elif [ -f "$keyword" ]; then
+                        echo "  $(basename $keyword)"
+                    fi
+                done
+                ;;
+            *)
+                if [ -f $KEYWORD_PATH ]; then
+                    cat "$KEYWORD_PATH"
+                else
+                    echo "$1 というメモはない。"
                 fi
-            done
-            ;;
-        *)
-            cat "$KEYWORD_PATH"
-            ;;
-    esac
-fi
-
-if [ $# -eq 2 ]; then
-    if [ -d $KEYWORD_PATH ]; then
-        if [ -f "$THEME_PATH" ]; then
-            cat "$THEME_PATH"
-        else
-            echo "$1 の中に$2 というメモはない。"
-            echo "$1 の中にあるメモは"
-            ls "$KEYWORD_PATH" 2>/dev/null | sed 's/^/  /'
-            exit 1
+                ;;
+        esac
+        ;;
+    2)
+        if [ -d $KEYWORD_PATH ]; then
+            if [ -f "$THEME_PATH" ]; then
+                cat "$THEME_PATH"
+            else
+                echo "$1 の中に$2 というメモはない。"
+                echo "$1 の中にあるメモは"
+                ls "$KEYWORD_PATH" 2>/dev/null | sed 's/^/  /'
+                exit 1
+            fi
+        elif [ -f $KEYWORD_PATH ]; then
+            echo "$1 はファイル。$2 は指定しない。"
         fi
-    elif [ -f $KEYWORD_PATH ]; then
-        echo "$1 はファイル。$2 は指定しない。"
-    fi
-fi
+        ;;
+    *)
+        usage
+        exit 1
+esac
