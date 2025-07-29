@@ -8,3 +8,10 @@ $ find . -type f -name "*.*" -print0 | xargs -0 wc -l
 ## -I コマンド
 ## コマンドに渡す引数の場所を指定する
 $ echo 01\ Black\ Rain.aiff | tr " " - | xargs -I{} mv 01\ Black\ Rain.aiff {}
+
+## -n コマンド
+## コマンドに渡す引数の数を制御する
+- できるだけ多くの入力文字列を受け入れる
+$ ls | xargs echo
+- 一つのecho コマンドにつき一つの引数を渡す
+$ ls | xargs -n1 echo
