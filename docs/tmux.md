@@ -1,7 +1,6 @@
 # tmux
-* detach
-`prefix + d`
-* next window
-`prefix + n`
-* previous window
-`prefix + p`
+## 10 番目以降のwindow に移動する
+- 番号を指定して移動する
+prefix + '
+- インタラクティブな移動
+prefix + w

@@ -1,4 +1,4 @@
-#bash
+# bash
 
 Control + l(C-l)で画面にある出力を消去できる
 詳しくはman bash のCommands for Moving を参照

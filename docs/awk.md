@@ -1,4 +1,4 @@
-#awk
+# awk
 ## BASIC
 パターンにマッチした行に対してアクションを実行する
 pattern1 { action1 }
