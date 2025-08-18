@@ -23,3 +23,8 @@ find . -maxdepth 1 -print0
 ```
 find . -perm -a+x -type f
 ```
+
+- 実行可能なファイルを削除する
+```
+find . -perm -a+x -type f -exec rm {} \;
+```
