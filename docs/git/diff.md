@@ -1,6 +1,6 @@
 # git diff
 
-stagedしたファイルのdiff
-```
+- stagedしたファイルのdiff
+```bash
 git diff --cached
 ```

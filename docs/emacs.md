@@ -1,7 +1,12 @@
 # Emacs
-C + o -> make new line  
-C + k -> delete one line  (delete following line)
-C + u -> delete previous line
-C + w -> delete a word
-C + h -> delete one character
-Alt + arrows -> moving per word  
+## 例
+- 改行
+`C + o`
+- 先の行を消す
+`C + k`
+- 前の行を消す
+`C + u`
+- 単語を消す
+`C + w`
+- 一文字を消す
+`C + h`

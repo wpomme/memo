@@ -1,5 +1,8 @@
 # data-exchanger
-## sender
+## 概要
+- パソコン間でファイルの送受信をしたいときなど
+
+### 送り手側
 1. 送信側IPアドレスを調べておく
 ``` sh
 ifconfig | grep "inet " | grep -v 127.0.0.1
@@ -10,7 +13,7 @@ ifconfig | grep "inet " | grep -v 127.0.0.1
 nc -p 8888 < file.txt
 ```
 
-## receiver
+### 受け手側
 1. ncで受信する
 ``` sh
 nc [IP Address] 8888 < received.txt

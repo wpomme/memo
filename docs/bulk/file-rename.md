@@ -12,13 +12,13 @@ touch test-file test-file2
 
 ## 実行
 ```sh
-ls | sed "p;s/test/aaa-test/" | xargs -n 2 mv
+ls | sed "p;s/test/foo-test/" | xargs -n 2 mv
 ```
-`ls`を実行すると`aaa-test-file   aaa-test-file2`となることがわかる
+`ls`を実行すると`foo-test-file   foo-test-file2`となることがわかる
 
 ## 環境削除
 ```sh
 cd ..
-yes | rm test/aaa-test-file test/aaa-test-file2
+yes | rm test/foo-test-file test/foo-test-file2
 rmdir test
 ```
