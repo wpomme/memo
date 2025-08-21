@@ -1,0 +1,26 @@
+#!/bin/bash
+
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+DOSC_DIR=$SCRIPT_DIR/docs
+
+usage() {
+    exec >&2
+    echo "
+# memo-grep
+memo/docs の下にあるmd ファイルにgrep を実行する。
+
+# 使い方
+$ memo-grep [keyword]
+keyword は必須。
+
+# 例
+$ memo-grep git          # memo/docs の下にあるmd ファイルに向けてgit というワードが入っている文章を検索する。
+"
+    exit 1
+}
+
+if [[ $# -eq 1 ]]; then
+    find $DOSC_DIR -type f | xargs -I{} grep --color=auto -nH $1 {}
+else
+    usage
+fi
