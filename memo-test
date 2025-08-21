@@ -1,0 +1,9 @@
+#!/bin/bash
+# memo やmemo-grep のテスト用スクリプト
+# テストしたいことが完成したら消す
+
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+DOSC_DIR=$SCRIPT_DIR/docs
+
+echo $SCRIPT_DIR
+echo $DOSC_DIR
