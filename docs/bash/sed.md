@@ -1,4 +1,3 @@
-# sed
 ## オプション
 - p: sedで変換される前の文字列も表示する
 - i: 拡張子を指定して上書き(BSD version) -> macのsedはBSD  

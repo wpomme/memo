@@ -1,5 +1,3 @@
-# git log
-
 - 基本的なログ表示
 ```bash
 git log --oneline

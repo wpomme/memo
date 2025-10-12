@@ -1,7 +1,7 @@
-# ghostty
 ## 例
 - 新規タブを作成
-`⌘ + T`
+<kbd>⌘</kbd> + <kbd>T</kbd>
 
 - タブを移動
-`Shift + ⌘ + [` or `Shift + ⌘ + ]`
+<kbd>Shift</kbd> + <kbd>⌘</kbd> + <kbd>[</kbd>
+<kbd>Shift</kbd> + <kbd>⌘</kbd> + <kbd>]</kbd>

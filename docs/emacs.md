@@ -1,12 +1,11 @@
-# Emacs
 ## 例
 - 改行
-`C + o`
+<kbd>C</kbd> + <kbd>o</kbd>
 - 先の行を消す
-`C + k`
+<kbd>C</kbd> + <kbd>k</kbd>
 - 前の行を消す
-`C + u`
+<kbd>C</kbd> + <kbd>u</kbd>
 - 単語を消す
-`C + w`
+<kbd>C</kbd> + <kbd>w</kbd>
 - 一文字を消す
-`C + h`
+<kbd>C</kbd> + <kbd>h</kbd>

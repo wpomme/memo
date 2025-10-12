@@ -1,4 +1,3 @@
-# Ruby
 ## &:method
 arr.select(&:odd?)など
 
