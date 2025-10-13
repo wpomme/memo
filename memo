@@ -1,7 +1,8 @@
 #!/bin/bash
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
-KEYWORD_PATH="$SCRIPT_DIR/docs/$1.md"
+KEYWORD_FILE="$SCRIPT_DIR/docs/$1.md"
+THEME_DIR="$SCRIPT_DIR/docs/$1"
 THEME_PATH="$SCRIPT_DIR/docs/$1/$2.md"
 
 usage() {
@@ -20,10 +21,6 @@ $ memo list         # 参照できるメモの一覧を表示する
 }
 
 case $# in
-    0)
-        usage
-        exit 1
-        ;;
     1)
         case $1 in
             help)
@@ -43,8 +40,12 @@ case $# in
                 done
                 ;;
             *)
-                if [ -f $KEYWORD_PATH ]; then
-                    cat "$KEYWORD_PATH"
+                if [ -f $KEYWORD_FILE ]; then
+                    cat $KEYWORD_FILE
+                elif [ -d $THEME_DIR ]; then
+                    echo "メモ一覧: "
+                    # TODO .mdを文字列から抜く
+                    ls $THEME_DIR
                 else
                     echo "$1 というメモはない。"
                 fi
@@ -55,14 +56,15 @@ case $# in
         if [ -d $KEYWORD_PATH ]; then
             if [ -f "$THEME_PATH" ]; then
                 cat "$THEME_PATH"
+            elif [ -f $KEYWORD_PATH ]; then
+                echo "$1 はファイル。"
+                echo "$1 はファイル。$2 は引数として取らない。"
             else
                 echo "$1 の中に$2 というメモはない。"
-                echo "$1 の中にあるメモは"
-                ls "$KEYWORD_PATH" 2>/dev/null | sed 's/^/  /'
+                echo "$1 の中にあるメモは: "
+                ls $THEME_DIR
                 exit 1
             fi
-        elif [ -f $KEYWORD_PATH ]; then
-            echo "$1 はファイル。$2 は指定しない。"
         fi
         ;;
     *)
