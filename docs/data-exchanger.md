@@ -2,18 +2,23 @@
 - パソコン間でファイルの送受信をしたいときなど
 
 ### 送り手側
-1. 送信側IPアドレスを調べておく
+1. ncで送信する
 ``` sh
-ifconfig | grep "inet " | grep -v 127.0.0.1
+# -l でリスナーモードにする
+# ポート番号は任意のものを使用する。一旦8888とする。
+cat file.txt | nc -l 8888
+
+# 画像などは多分こっちがいい
+nc -l 8888 < file.jpeg
 ```
 
-2. ncで送信する
+2. 送信側IPアドレスを調べる
 ``` sh
-nc -p 8888 < file.txt
+ifconfig | grep "inet "
 ```
 
 ### 受け手側
 1. ncで受信する
 ``` sh
-nc [IP Address] 8888 < received.txt
+nc [送り手川のIPアドレス] 8888 < received.txt
 ```
