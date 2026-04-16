@@ -1,14 +1,22 @@
 # memo
 ## セットアップ
-- `make`で`~/.bin`に`memo`、`memo-grep`へのシンボリックリンクを作成
-    - `~/.bin`にパスが通っていればmemoなどがコマンドとして動作する
-- 手元で動作させたい場合は`./memo`などとする
+```bash
+make
+```
 
 ## クリーン
-- `make clean`で`memo`、`memo-grep`へのシンボリックリンクを削除
+```bash
+make clean
+```
 
-## memo
-- docs以下にあるメモを参照できる
+## コマンド一覧
+```bash
+# メモの一覧
+memo-list
 
-## memo-grep
-- docs以下のメモの中を入力されたキーワードにしたがって検索する
+# 全てのメモに対してgrepを実行する
+memo-grep
+
+# 指定したメモの全文を表示する
+memo-cat
+```

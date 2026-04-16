@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SCRIPT_DIR=$(cd $(dirname $0); pwd)
-DOSC_DIR="$SCRIPT_DIR/docs"
+SCRIPT_DIR=$(git rev-parse --show-toplevel)
+DOCS_DIR="$SCRIPT_DIR/docs"
 
 usage() {
     exec >&2
@@ -20,7 +20,7 @@ $ memo-grep git          # memo/docs の下にあるmd ファイルに向けてg
 }
 
 if [[ $# -eq 1 ]]; then
-    find $DOSC_DIR -type f | xargs -I{} grep --color=auto -nH $1 {}
+    find $DOCS_DIR -type f | xargs -I{} grep --color=auto -nH $1 {}
 else
     usage
 fi

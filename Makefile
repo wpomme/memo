@@ -1,15 +1,13 @@
 all: sync
 
 sync:
-	[[ -d ~/.bin/docs ]] || ln -s $(PWD)/docs ~/.bin/docs
-	[[ -f ~/.bin/memo ]] || ln -s $(PWD)/memo ~/.bin/memo
-	[[ -f ~/.bin/memo-grep ]] || ln -s $(PWD)/memo-grep ~/.bin/memo-grep
-	[[ -f ~/.bin/memo-test ]] || ln -s $(PWD)/memo-test ~/.bin/memo-test
+	[ -f ~/.bin/memo-cat ] || ln -s $(PWD)/bin/memo-cat ~/.bin/memo-cat
+	[ -f ~/.bin/memo-grep ] || ln -s $(PWD)/bin/memo-grep ~/.bin/memo-grep
+	[ -f ~/.bin/memo-list ] || ln -s $(PWD)/bin/memo-list ~/.bin/memo-list
 
 clean:
-	rm ~/.bin/docs
-	rm ~/.bin/memo
-	rm ~/.bin/memo-grep
-	rm ~/.bin/memo-test
+	rm -f ~/.bin/memo-cat
+	rm -f ~/.bin/memo-grep
+	rm -f ~/.bin/memo-list
 
 .PHONY: all clean sync

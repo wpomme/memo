@@ -1,0 +1,23 @@
+#!/bin/bash
+
+SCRIPT_DIR=$(git rev-parse --show-toplevel)
+DOCS_DIR="$SCRIPT_DIR/docs"
+
+usage() {
+    exec >&2
+    echo "
+# memo-list
+memo/docs の下にあるメモの一覧を出力する
+
+# 使い方
+$ memo-list
+"
+    exit 1
+}
+
+
+if [[ $# -eq 0 ]]; then
+    find $DOCS_DIR -type f -name "*.md" | sed 's/^.*\///' | sed 's/\.md//'
+else
+    usage
+fi

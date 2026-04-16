@@ -1,0 +1,26 @@
+#!/bin/bash
+
+SCRIPT_DIR=$(git rev-parse --show-toplevel)
+DOCS_DIR="$SCRIPT_DIR/docs"
+
+usage() {
+    exec >&2
+    echo "
+# memo-cat
+指定したキーワードのメモを表示する
+
+# 使い方
+$ memo-cat [keyword]
+keyword は必須。
+
+# 例
+$ memo-cat ls
+"
+    exit 1
+}
+
+if [[ $# -eq 1 ]]; then
+    find $DOCS_DIR -type f -name "$1.md" -exec cat {} \;
+else
+    usage
+fi
