@@ -7,11 +7,15 @@ Control + l(C-l)で画面にある出力を消去できる
 - $ -> 一般ユーザー
 - # -> rootユーザー
 
-## 履歴展開 (History Expansion)
-- 直前のコマンドを実行する
+## コマンドの再実行
+- 履歴展開 (History Expansion)
+    - 直前のコマンドを実行する
 ```bash
 $ !!
 ```
+
+- インクリメンタルサーチ(Incremental search)
+    - シェルプロンプトで`Ctrl - R`を押すと、コマンド履歴から逆順(Reverse)にインクリメンタル検索を実行できる
 
 - 最近のstringで始まるコマンドを実行する
 ```bash
