@@ -17,3 +17,12 @@ git --no-pager diff
 ```bash
 git --no-pager <subcommand> <options>
 ```
+
+- 直前のコミットとdiffをとる
+    - patchファイルを作成するときなどに使う
+```bash
+git diff HEAD^ HEAD
+
+# patchファイルを作成
+git diff HEAD^ HEAD > patch.diff
+```
