@@ -59,3 +59,10 @@ diff <(list) <(list)
 ```bash
 $ echo <(ls)
 ```
+
+## builtinコマンドと外部コマンド
+- bashには組み込みコマンドと外部コマンドがある
+- 組み込みコマンドは`man bash`でSHELL BUILTIN COMMANDSなどと検索すれば調べられる
+- `ls`などは外部コマンドである。
+    - coreutils(GNU/Linux)かmacOSのシステムユーティリティとして提供されている外部コマンド
+    -> 組み込みでもcoreutils or macOSのシステムユーティリティでも、とりあえずbashに記事を書く
