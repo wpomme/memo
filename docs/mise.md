@@ -4,9 +4,24 @@
     - 他にも使い出がありそう
 
 ### How to use
-- 管理しているランタイムの詳細情報を確認
+- サブコマンドのヘルプを表示
+```bash
+mise help <subcommand>
 ```
-mise ls
+
+- 利用できるランタイムを表示
+```bash
+# 利用できるRubyのランタイムを全て表示
+mise ls-remote ruby
+
+# 利用できるRubyのランタイムのうち、バージョンが4系のものを表示する
+mise ls-remote ruby@4
+```
+
+- miseのconfigファイルを管理する
+```bash
+# miseのコンフィグファイルの一覧を見る
+mise config
 ```
 
 - 管理しているランタイムの詳細情報を確認
