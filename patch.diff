@@ -1,0 +1,101 @@
+diff --git a/docs/git/conflict.md b/docs/git/conflict.md
+index 1ff2347..1771bdf 100644
+--- a/docs/git/conflict.md
++++ b/docs/git/conflict.md
+@@ -2,3 +2,40 @@
+ ```bash
+ $ vimdiff  # alias vimdiff="git mergetool -t vimdiff"
+ ```
++
++- マージしてきた方のブランチにコードを合わせる場合
++```bash
++# マージしてきた方のブランチを採用する
++git restore --theirs <file>
++
++# または、次のコマンドで取り込む
++# --staged と --worktree の両方を指定してgit add <file> と同様の動作をする
++git restore --source=MERGE_HEAD --staged --worktree <file>
++
++# 現在のブランチ(HEAD)の方を採用する
++git restore --ours <file>
++```
++
++- 特殊なHEADリファレンス
++    - `HEAD`: 現在チェックアウトしているコミット
++    - `MERGE_HEAD`: マージ中の相手ブランチの先頭コミット
++    - `ORIG_HEAD`: merge/rebase/reset 実行前の HEAD の位置
++    - `FETCH_HEAD`	直前の git fetch で取得したリモートの先頭
++    - `CHERRY_PICK_HEAD`: cherry-pick 中の対象コミット
++    - `REBASE_HEAD`: rebase 中に現在適用しているコミット
++
++- コンフリクトマーカーの見方
++```diff
++<<<<<<< HEAD
++現在のブランチの内容（ours / stage 2）
++||||||| abc1234  ← diff3 スタイルの場合のみ表示
++共通祖先の内容（base / stage 1）
++=======
++マージしてくるブランチの内容（theirs / stage 3）
++>>>>>>> feature-branch
++```
++
++- diff3 スタイルを有効にする
++```bash
++git config --global merge.conflictstyle diff3
++```
+diff --git a/docs/git/push.md b/docs/git/push.md
+new file mode 100644
+index 0000000..2194671
+--- /dev/null
++++ b/docs/git/push.md
+@@ -0,0 +1,22 @@
++- 現在チェックアウトしているブランチをpushする
++```bash
++# 最もシンプルな方法
++git push origin HEAD
++# 上流ブランチ(upstream)が設定済みならgit push でOK
++git push
++# 最初に-uを付けて上流を設定しておけばいい
++git push -u origin HEAD
++```
++
++## 上流ブランチ(Upstream Branch)
++- ローカルブランチが追跡(トラッキング)しているリモートブランチのこと
++```bash
++## 上流ブランチの設定方法
++# -u(--set-upstream)オプションを追加する
++git push -u origin <branch-name>
++
++## 現在のブランチが上流ブランチに設定されているかどうかを確認
++git rev-parse --abbrev-ref @{upstream}
++# -> 未設定の場合はエラーになる
++```
++
+diff --git a/docs/tmux.md b/docs/tmux.md
+index 2305737..edaefe3 100644
+--- a/docs/tmux.md
++++ b/docs/tmux.md
+@@ -5,6 +5,16 @@
+     - インタラクティブな移動
+     `prefix + w`
+ 
++- セッション
++    - セッションを一時終了する(Detach)
++        - `prefix + d`
++    - 直前のセッションに戻る(Attach)
++        - `tmux a` or `tmux attach`
++        1 例: 間違ってDetachしたときは`tmux attach`で復元する
++        2 例: 複数のセッションを起動させるとき、最初のセッションをDetachして、ターミナルで新しいtmuxを起動させる
++            - その際は、tmuxに名前を付けると良さそう
++            - ほとんど不具合を起こさない開発サーバーにtmux1を割り当てて、それ以外をtmux2にするとか?
++
+ 
+ - ウィンドウ
+     - 全てのウィンドウの一覧を表示
+@@ -17,3 +27,6 @@
+     `tmux kill-window -t <session-name>:<window-number>`
+         - 例: 現在のセッションの５番目のウィンドウを閉じる
+         `tmux kill-window -t 5`
++
++    - ウィンドウの名前を変更する
++    `prefix + ,`

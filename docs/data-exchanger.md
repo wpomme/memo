@@ -20,5 +20,5 @@ ifconfig | grep "inet "
 ### 受け手側
 1. ncで受信する
 ``` sh
-nc [送り手川のIPアドレス] 8888 < received.txt
+nc [送り手川のIPアドレス] 8888 > received.txt
 ```

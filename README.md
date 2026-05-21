@@ -20,3 +20,6 @@ memo-grep
 # 指定したメモの全文を表示する
 memo-cat
 ```
+
+##TODO
+- CLI をRubyで作り直してしまう

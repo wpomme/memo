@@ -33,7 +33,13 @@ $ cd dir && touch new.txt
 - cd dir が失敗した場合、エラーコード1 で終了する
 ```bash
 $ cd dir || exit 1
+
+# 例
+## フォルダがなければ作成する
+[ -d path/to/folder ] || mkdir -p path/to/folder
 ```
+
+
 
 ## 終了コード
 - $? で確認できる。0 なら成功、1 なら失敗
