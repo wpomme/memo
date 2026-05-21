@@ -6,6 +6,20 @@
     `prefix + w`
 
 - セッション
+    - セッションに名前を付けて起動する
+        `tmux new -s <session-name>`
+    - 指定したセッションを起動する
+        `tmux attach -t <target-session>`
+    - 次のセッションに移動する
+        `prefix )`
+    - 前のセッションに移動する
+        `prefix (`
+
+        * target-session は次の順番で決まる
+        1. $ のついたsession ID
+        2. セッションの正確な名前
+        ...
+
     - セッションを一時終了する(Detach)
         - `prefix + d`
     - 直前のセッションに戻る(Attach)
@@ -22,6 +36,7 @@
 
     - 現在開いているウィンドウを完全に終了する
     `Ctrl + d`
+        - `prefix + d`としてしまうと、セッションがDetachとなるので注意すること
 
     - ウィンドウを番号指定で閉じる
     `tmux kill-window -t <session-name>:<window-number>`
@@ -30,3 +45,15 @@
 
     - ウィンドウの名前を変更する
     `prefix + ,`
+
+- その他
+    - tmux のコマンド一覧
+    `tmux list-commands`
+
+- tmux のドキュメント
+    - tmux attach のドキュメントを探す
+    1. `man tmux`
+    2. `/attach-session`
+
+    - tmux new のドキュメントを探す
+    1. `tmux list-commnads | grep new`
