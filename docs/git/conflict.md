@@ -6,6 +6,8 @@ $ vimdiff  # alias vimdiff="git mergetool -t vimdiff"
 - マージしてきた方のブランチにコードを合わせる場合
 ```bash
 # マージしてきた方のブランチを採用する
+# 注意: file に. を指定すると、マージしてきた方のブランチを全て採用してしまう。
+# file は個別に指定すること
 git restore --theirs <file>
 
 # または、次のコマンドで取り込む

@@ -12,3 +12,17 @@ git log --graph --oneline --all
 ```bash
 git log --follow -- filename
 ```
+
+- developにはない現在のブランチのみのコミットを表示する
+```bash
+git log develop..HEAD
+
+# -p で差分も確認できる
+git log -p develop..HEAD
+
+# ここからmergeコミットを取り除くには
+git log --no-merges develop..HEAD
+
+# tig でも同様
+tig -p --no-merges develop..HEAD
+```

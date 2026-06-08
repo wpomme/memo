@@ -17,7 +17,7 @@ $ !string
 
 - zsh-completions
     - "zsh compinit: insecure directories"というwarningが出たら次を実行する
-    1. `compinit`を実行
+    1. `compaudit`を実行
     2. 信頼できないパスの一覧が出る。信頼できれば次を実行する
         - `chmod go-w '/path/to/file'`
         - `chmod -R go-w '/path/to/file'`
