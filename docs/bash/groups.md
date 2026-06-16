@@ -1,9 +1,3 @@
-- 自分が所属するグループの一覧を確認するコマンド
-```bash
-group
-
-> ...
-> ...
-> com.apple.access_ssh
-> com.apple.access_remote_ae
-```
+- groups: グループを表示する
+    - id コマンドにより廃止された
+    - `id -Gn [user]` と同等である
