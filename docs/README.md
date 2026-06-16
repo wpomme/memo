@@ -1,10 +1,11 @@
 - docs: メモを置く場所
     - フォルダ構成
         - git とvim はよく使うので、第一階層にフォルダを作成している
-    - データ構造やアルゴリズムのメモも作成したら面白そう
-    - htmlやyml などの構造についてのメモを保存するフォルダを作成
-        - その中にmarkdown.md を入れる
-    - フロントエンドに関するメモ書きを作成するなど
-        - container / presenter など
-        - lang の中にtypescript などが欲しい
-        - docs/frontent/react/ なども欲しい
+
+- TODO?
+- データ構造やアルゴリズムのメモも作成したら面白そう
+- htmlやyml などの構造についてのメモを保存するフォルダを作成
+    - その中にmarkdown.md を入れる
+- フロントエンドに関するメモ書きを作成するなど
+    - container / presenter など
+    - docs/frontent/react/ なども欲しい
