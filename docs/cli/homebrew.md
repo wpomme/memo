@@ -1,4 +1,5 @@
 - 自分でインストールしたパッケージを確認するとき
+# TODO: homebrew の設定に関することは docs/setting/homebrew.md に書く
 ```bash
 brew leaves -r
 ```

@@ -1,0 +1,2 @@
+- cli/old
+    - 代替コマンドがあり、deprecate されたCLI のメモをここに置く

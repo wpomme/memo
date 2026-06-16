@@ -1,4 +1,6 @@
 ## mysql-client
+# TODO: mysql のmemo はまた別のところに置く
+#       docs/db/mysql/ など
 ### データベースの探索
 ```
 # データベースの一覧を取得

@@ -1,4 +1,5 @@
 # 知っていること
+# TODO: CLI の操作以外のことは別のところに書く
 ## 起動しているdocker containerにログイン
 ```
 docker exec -it <NAMES or CONTAINER ID> <Shell to login>
