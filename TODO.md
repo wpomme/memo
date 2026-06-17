@@ -1,7 +1,12 @@
 # TODO
 - memo CLI インターフェイス
 ```bash
+
 # Ruby で CLI を作り直してしまう
+## 現状
+`bundle exec ruby exe/memo list` を実行すると記事の一覧は表示できるようになった
+
+## TODO
 memo
 memo list - docs 以下の記事の一覧を表示
 memo cat  - 該当のメモを全文表示
