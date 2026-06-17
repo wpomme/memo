@@ -9,7 +9,7 @@
 ## TODO
 memo
 memo list - docs 以下の記事の一覧を表示
-memo cat  - 該当のメモを全文表示
+memo read  - 該当のメモを全文表示
 memo grep - docs 以下について、そのキーワードで全文検索をかける
 # formatter
 # 英数字の後は半角スペースを入れる、など

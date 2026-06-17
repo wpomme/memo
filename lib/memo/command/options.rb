@@ -3,37 +3,36 @@ require 'optparse'
 module Memo
   class Command
     module Options
+      Arguments = Data.define(:argv)
+      SUB_COMMANDS = %w[list read].freeze
+
       def self.parse!(argv)
-        options = {}
+        parsed = command_parser.order(argv)
+        sub_parsed = sub_command_parser(parsed)
+        Arguments.new(argv: sub_parsed)
+      end
 
-        # 未定義のkey を指定されたら例外を発生させる
-        sub_command_parsers = Hash.new do |k, v|
-          raise ArgumentError, "'#{v}' はmemo のサブコマンドではありません。"
-        end
-
-        # memo list
-        sub_command_parsers['list'] = OptionParser.new do |opt|
-        end
-
+      def self.command_parser
         # memo -v / memo --version
-        command_parser = OptionParser.new do |opt|
-          opt.on_head('-v', '--version', 'Show program version') do |v|
+        OptionParser.new do |opt|
+          opt.on_head('-v', '--version') do |_|
             opt.version = Memo::VERSION
             puts opt.ver
             exit
           end
         end
+      end
 
-        # 引数の解析を行う
-        begin
-          command_parser.order!(argv)
-          options[:command] = argv.shift
-          sub_command_parsers[options[:command]].parse!(argv)
-        rescue OptionParser::MissingArgument, OptionParser::InvalidOption, ArgumentError => e
-          abort e.message
+      def self.sub_command_parser(argv)
+        case argv.first
+        when 'list'
+          raise Options::ParseError, '"list" do not take any parameter' if argv.length > 1
+        when 'read'
+          raise Options::ParseError, '"read" must take an argument' if argv.length == 1 || argv.length > 2
+        else
+          raise OptionParser::ParseError, "unknown sub command"
         end
-
-        options
+        argv
       end
     end
   end

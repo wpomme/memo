@@ -8,5 +8,11 @@ gh pr status
 gh pr view
 
 # CI チェックの結果一覧
+# URL からCI のRun ID が分かる
 gh pr checks
+
+# CI を再実行する
+gh run rerun <run-id>
+## 詳細に指定する場合
+gh run rerun <run-id>  --repo <repo-name> --failed
 ```
