@@ -2,4 +2,6 @@
 
 require "memo"
 
-Memo::Command.run(ARGV)
+exe_dir = __dir__
+
+Memo::Command.run(exe_dir, ARGV)

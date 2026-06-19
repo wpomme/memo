@@ -5,8 +5,9 @@ module Memo
     # level: そのメモが入っているフォルダの階層
     # docs/ と docs/git/ が同じlevel = 1 となるが、フォルダ名で判断できるはず
     Entry = Data.define(:full_path, :dir, :level)
-    def initialize
-      @entries = load_entries
+    def initialize(exe_dir)
+      @docs_dir = File.join(File.expand_path("..", exe_dir), 'docs')
+      @entries = load_entries(exe_dir)
       @dir_set = Set.new(@entries.map(&:dir).uniq)
     end
 
@@ -34,15 +35,13 @@ module Memo
       File.basename(file_path, '.md')
     end
 
-    def load_entries
-      pwd = Dir.pwd
-      docs_dir = File.join(pwd, 'docs')
-      Find.find(docs_dir).filter_map do |path|
-        Find.prune if path == pwd
+    def load_entries(exe_dir)
+      Find.find(@docs_dir).filter_map do |path|
+        Find.prune if path == exe_dir
         next if File.basename(path) == 'README.md'
         next if FileTest.directory?(path)
 
-        rel = File.dirname(path.sub(docs_dir, ''))
+        rel = File.dirname(path.sub(@docs_dir, ''))
 
         Entry.new(
           full_path: path,

@@ -1,29 +1,18 @@
 # memo
-## セットアップ
+## CLI (WIP)
+### ビルド
 ```bash
-make
+# ローカルでgem をビルドする
+bundle exec rake install:local
+
+# どのフォルダからでもmemo を実行できる
+memo list
 ```
 
-## クリーン
-```bash
-make clean
-```
-
-## コマンド一覧
-```bash
-# メモの一覧
-memo-list
-
-# 全てのメモに対してgrepを実行する
-memo-grep
-
-# 指定したメモの全文を表示する
-memo-cat
-```
-
-## CLI(WIP)
+### 開発コマンド
 ```
 bundle exec ruby exe/memo list
+bundle exec ruby exe/memo dirs
 bundle exec ruby exe/memo read <word>
 
 # テスト
