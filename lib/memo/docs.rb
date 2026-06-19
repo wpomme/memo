@@ -1,13 +1,12 @@
 # frozen_string_literal: true
+require 'rainbow'
 
 module Memo
   class Docs
-    # level: そのメモが入っているフォルダの階層
-    # docs/ と docs/git/ が同じlevel = 1 となるが、フォルダ名で判断できるはず
-    Entry = Data.define(:full_path, :dir, :level)
+    Entry = Data.define(:full_path, :dir)
     def initialize(exe_dir)
       @docs_dir = File.join(File.expand_path("..", exe_dir), 'docs')
-      @entries = load_entries(exe_dir)
+      @entries = load_entries
       @dir_set = Set.new(@entries.map(&:dir).uniq)
     end
 
@@ -26,7 +25,13 @@ module Memo
     end
 
     def files
-      puts @entries.map { |entry| filename(entry.full_path) }.uniq
+      grouped_by_dir = @entries.group_by(&:dir)
+      grouped_by_dir.each_key do |key|
+        puts Rainbow(key).red
+        grouped_by_dir[key].each do |entry|
+          puts filename(entry.full_path)
+        end
+      end
     end
 
     private
@@ -35,18 +40,13 @@ module Memo
       File.basename(file_path, '.md')
     end
 
-    def load_entries(exe_dir)
-      Find.find(@docs_dir).filter_map do |path|
-        Find.prune if path == exe_dir
-        next if File.basename(path) == 'README.md'
-        next if FileTest.directory?(path)
-
-        rel = File.dirname(path.sub(@docs_dir, ''))
+    def load_entries
+      Dir.glob("**/*.md", base: @docs_dir).filter_map do |rel_path|
+        next if File.basename(rel_path) == 'README.md'
 
         Entry.new(
-          full_path: path,
-          dir: rel,
-          level: rel.count("/")
+          full_path: File.join(@docs_dir, rel_path),
+          dir: File.dirname(rel_path)
         )
       end
     end
