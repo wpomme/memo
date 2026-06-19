@@ -4,7 +4,8 @@
 
 # Ruby で CLI を作り直してしまう
 ## 現状
-`bundle exec ruby exe/memo list` を実行すると記事の一覧は表示できるようになった
+絶対パスを登録しないと他のフォルダからmemo が参照できない
+alias memo='/Users/hy/memo/bin/memo
 
 ## TODO
 memo
@@ -42,10 +43,6 @@ memo add-front-matter Front Matter を追加する。front-matter にはtag, tit
         ```
 
 ## memo に書くこと
-- gh コマンドでGithub Actions を操作できる
-    - ワークフローの再実行ができる
-        - 再実行のために、ワークフローの実行リストを確認できる
-
 - zsh-cli
     - zsh のauto-completion がとても便利
     - memo の cli を作成するときに利用できそう
