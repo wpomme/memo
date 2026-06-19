@@ -20,3 +20,12 @@ memo-grep
 # 指定したメモの全文を表示する
 memo-cat
 ```
+
+## CLI(WIP)
+```
+bundle exec ruby exe/memo list
+bundle exec ruby exe/memo read <word>
+
+# テスト
+bundle exec ruby -Itest test/memo/test_docs.rb
+```
