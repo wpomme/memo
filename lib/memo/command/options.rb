@@ -15,6 +15,21 @@ module Memo
       def self.command_parser
         # memo -v / memo --version
         OptionParser.new do |opt|
+          opt.banner = <<-HELP
+    Usage:
+    # メモの一覧を表示する
+    memo list
+
+    # 該当のメモを全文表示する
+    memo read <word>
+
+    # メモのフォルダ一覧を表示する
+    memo dirs
+          HELP
+          opt.on_head('-h', '--help') do |_|
+            puts opt.help
+            exit
+          end
           opt.on_head('-v', '--version') do |_|
             opt.version = Memo::VERSION
             puts opt.ver

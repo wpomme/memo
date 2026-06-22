@@ -35,6 +35,7 @@ bundle exec ruby -Itest test/memo/test_docs.rb
 ```
 ## TODO
 memo help / -h コマンド
+memo list <dir> そのdir ごとのメモの一覧を表示
 memo grep # docs 以下について、そのキーワードで全文検索をかける
 memo format # 対象のメモをフォーマットする。半角英数字の後には半角スペースを入れるなど。rubocopで代用可能？
 
