@@ -9,7 +9,10 @@ git config --local user.name "<username>"
 git config --local user.email "<email>"
 ```
 
-- テキストエディタをVimにする
 ```bash
+# テキストエディタをneovimにする
+git config --global core.editor 'nvim'
+
+# テキストエディタをVimにする
 git config --global core.editor 'vim -c "set fenc=utf-8"'
 ```
