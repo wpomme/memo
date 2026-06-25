@@ -40,7 +40,7 @@ module Memo
     # メモのディレクトリを赤字で表示し、そのディレクトリごとのファイル名を出力する
     def print_files
       grouped_by_dir.each_key do |key|
-        puts Rainbow(key).red
+        puts Rainbow(key).green
         grouped_by_dir[key].each do |entry|
           puts filename(entry.full_path)
         end

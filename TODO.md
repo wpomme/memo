@@ -6,3 +6,6 @@
 
 - JSDoc のこと
     - JSDoc の形式とか
+
+- memo と memo-docs の分離
+    - memo init でホームディレクトリ以下のmemo or memo-docs という名前のフォルダを探して、そこをパスにする
