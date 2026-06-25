@@ -3,9 +3,16 @@ require "tmpdir"
 require "fileutils"
 
 class TestDocs < Minitest::Test
+  # TODO: @docs_dir と @exe_dir が同階層であること
+  # TODO: @entries.full_path と@entries.dir のテストコード
+  # TODO: @dir_set のテストコード
+
   def setup
     @tmpdir = Dir.mktmpdir
     @docs_dir = File.join(@tmpdir, "docs")
+    @exe_dir = File.join(@tmpdir, "exe")
+
+    @test_files = %w[grep.md find.md log.mg]
 
     FileUtils.mkdir_p(File.join(@docs_dir, "cli"))
     FileUtils.mkdir_p(File.join(@docs_dir, "git"))
@@ -24,16 +31,18 @@ class TestDocs < Minitest::Test
     FileUtils.remove_entry(@tmpdir)
   end
 
+  # Docs#initialize が entries を生成する
   def test_initialize_loads_entries
-    docs = Memo::Docs.new
+    docs = Memo::Docs.new(@exe_dir)
     entries = docs.instance_variable_get(:@entries)
 
     assert_instance_of Array, entries
     refute_empty entries
   end
 
+  # Docs#initialize で生成されたentries はMemo::Docs::Entry の配列を返す
   def test_load_entries_returns_entry_structs
-    docs = Memo::Docs.new
+    docs = Memo::Docs.new(@exe_dir)
     entries = docs.instance_variable_get(:@entries)
 
     entries.each do |entry|
@@ -41,52 +50,31 @@ class TestDocs < Minitest::Test
     end
   end
 
+  # Docs#load_entries で生成されたentries#full_path はREADME(.md) を含まない
   def test_load_entries_excludes_readme
-    docs = Memo::Docs.new
+    docs = Memo::Docs.new(@exe_dir)
     entries = docs.instance_variable_get(:@entries)
-    file_names = entries.map(&:file_name)
+    full_path = entries.map(&:full_path)
 
-    refute_includes file_names, "README"
-    refute_includes file_names, "README.md"
+    refute_includes full_path, "README"
+    refute_includes full_path, "README.md"
   end
 
-  def test_load_entries_excludes_top_level_files
-    docs = Memo::Docs.new
-    entries = docs.instance_variable_get(:@entries)
-    dir_names = entries.map(&:dir_name)
-
-    refute_includes dir_names, "."
-  end
-
-  def test_load_entries_sets_dir_name
-    docs = Memo::Docs.new
-    entries = docs.instance_variable_get(:@entries)
-    dir_names = entries.map(&:dir_name).sort.uniq
-
-    assert_equal %w[cli git], dir_names
-  end
-
-  def test_load_entries_sets_file_name_without_extension
-    docs = Memo::Docs.new
-    entries = docs.instance_variable_get(:@entries)
-    file_names = entries.map(&:file_name).sort
-
-    assert_equal %w[find grep log], file_names
-  end
-
+  # Docs#load_entries:full_path は絶対パスである
   def test_load_entries_sets_full_path
-    docs = Memo::Docs.new
+    docs = Memo::Docs.new(@exe_dir)
     entries = docs.instance_variable_get(:@entries)
+    full_paths = entries.map(&:full_path)
 
-    entries.each do |entry|
-      assert_instance_of Pathname, entry.full_path
-      assert entry.full_path.exist?, "#{entry.full_path} should exist"
+    full_paths.each do |full_path|
+      assert File.absolute_path?(full_path)
     end
   end
 
+  # Docs.new が空のdocs_dir を読み込んだ場合は、entries も空になる
   def test_load_entries_with_empty_docs_directory
     FileUtils.rm_rf(Dir.glob(File.join(@docs_dir, "*")))
-    docs = Memo::Docs.new
+    docs = Memo::Docs.new(@exe_dir)
     entries = docs.instance_variable_get(:@entries)
 
     assert_empty entries

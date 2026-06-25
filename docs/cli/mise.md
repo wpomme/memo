@@ -4,14 +4,18 @@
 - nodejsやpythonなど、ランタイムのバージョンを管理できるツール
     - 他にも使い出がありそう
 
-### How to use
-- サブコマンドのヘルプを表示
+### 例
 ```bash
-mise help <subcommand>
-```
+# サブコマンドの一覧を表示
+mise
 
-- 利用できるランタイムを表示
-```bash
+# サブコマンドのヘルプを表示
+mise help <subcommand>
+
+# パッケージをインストールしてmise.toml. にパッケージを追加するコマンド
+# mise で利用できるパッケージの一覧が見れる
+mise use
+
 # 利用できるRubyのランタイムを全て表示
 mise ls-remote ruby
 

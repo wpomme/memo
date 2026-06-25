@@ -2,6 +2,9 @@
 ## CLI (WIP)
 ### ビルド
 ```bash
+# memo のリポジトリをクローンして、ruby の動作環境を整えたら
+bundle install
+
 # ローカルでgem をビルドする
 bundle exec rake install:local
 

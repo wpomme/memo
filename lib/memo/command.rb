@@ -17,11 +17,11 @@ module Memo
 
       case parsed_options.argv.first
       when 'list'
-        Docs.new(@exe_dir).files
+        Docs.new(@exe_dir).print_files
       when 'dirs'
-        Docs.new(@exe_dir).dirs
+        Docs.new(@exe_dir).print_dirs
       when 'read'
-        Docs.new(@exe_dir).read(parsed_options.argv[1])
+        Docs.new(@exe_dir).read_and_print_content(parsed_options.argv[1])
       end
     end
   end
