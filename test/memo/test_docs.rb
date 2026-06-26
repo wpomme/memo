@@ -1,6 +1,7 @@
-require "test_helper"
 require "tmpdir"
 require "fileutils"
+
+require_relative "../test_helper"
 
 class TestDocs < Minitest::Test
   # TODO: @docs_dir と @exe_dir が同階層であること

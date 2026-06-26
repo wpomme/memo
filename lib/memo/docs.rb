@@ -49,7 +49,10 @@ module Memo
 
     def print_files_by_dir(dir)
       files = files_by_dir(dir)
-      puts "#{dir} というディレクトリはありません。" unless files
+      unless files
+        puts "#{dir} というディレクトリはありません。"
+        exit!(1)
+      end
 
       files.each do |entry|
         puts filename(entry.full_path)

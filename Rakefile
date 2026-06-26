@@ -2,31 +2,27 @@
 
 require "bundler/gem_tasks"
 require "minitest/test_task"
+require "rake/TestTask"
+require "rubocop/rake_task"
 
 Minitest::TestTask.create
 
-require "rubocop/rake_task"
-
 RuboCop::RakeTask.new
 
-task default: %i[test rubocop]
-
-task :list do
-  sh %(bundle exec ruby exe/memo list)
+Rake::TestTask.new do |t|
+  t.pattern = 'test/**/test_*.rb'
 end
 
-task :read do
-  sh %(bundle exec ruby exe/memo read)
-end
+task default: :test
 
-task :dirs do
-  sh %(bundle exec ruby exe/memo dirs)
-end
+# 次のようにして引数を渡す
+# rake "memo[read, tmux]"
+desc "Execute memo CLI. memo CLI takes some arguments as sub commands"
+task :memo, [:sub_command, :sub_command_arg] do |_, args|
+  args.with_defaults(sub_command: 'list')
 
-task :help do
-  sh %(bundle exec ruby exe/memo --help)
-end
+  cmd = ["bundle", "exec", "ruby", "exe/memo", args.sub_command]
+  cmd << args.sub_command_arg if args.sub_command_arg
 
-task :format do
-  sh %(bundle exec rubocop -A)
+  sh(*cmd)
 end

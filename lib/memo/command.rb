@@ -17,7 +17,11 @@ module Memo
 
       case parsed_options.argv.first
       when 'list'
-        Docs.new(@exe_dir).print_files
+        if parsed_options.argv[1]
+          Docs.new(@exe_dir).print_files_by_dir(parsed_options.argv[1])
+        else
+          Docs.new(@exe_dir).print_files
+        end
       when 'dirs'
         Docs.new(@exe_dir).print_dirs
       when 'read'

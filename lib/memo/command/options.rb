@@ -20,6 +20,9 @@ module Memo
     # メモの一覧を表示する
     memo list
 
+    # そのディレクトリの中になるメモの一覧を表示する
+    memo list <dirs>
+
     # 該当のメモを全文表示する
     memo read <word>
 
@@ -41,9 +44,9 @@ module Memo
       def self.sub_command_parser(argv)
         case argv.first
         when 'list'
-          raise Options::ParseError, '"list" do not take any parameter' if argv.length > 1
+          raise Options::ParseError, '"list" do not take 2 or more parameters' if argv.length > 2
         when 'dirs'
-          raise Options::ParseError, '"dirs" do not take any parameter' if argv.length > 1
+          raise Options::ParseError, '"dirs" do not take any parameters' if argv.length > 1
         when 'read'
           raise Options::ParseError, '"read" must take an argument' if argv.length == 1 || argv.length > 2
         else
