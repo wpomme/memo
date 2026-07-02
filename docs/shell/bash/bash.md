@@ -1,3 +1,21 @@
+- bash
+## TODO
+man bash の章と項目をあらかじめ取得しておいて、memo に記載しておいてもいいかもしれない。
+展開(EXPANSION) だけでいくつもの記事がある
+
+##
+### コマンド展開: Command Substitution
+```
+$(command)
+# or
+`command`
+```
+
+# 組み込みコマンド: SHELL BUILTIN COMMANDS 
+    - 組み込みコマンドのドキュメントはman bash のSHELL BUILTIN COMMANDS に記載がある
+    - 例えば、cd, command, 
+
+
 ## Tips
 Control + l(C-l)で画面にある出力を消去できる  
 詳しくはman bash のCommands for Moving を参照  
