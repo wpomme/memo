@@ -1,6 +1,9 @@
 ## Neovim: 設定について
 ### 設定ファイルのディレクトリ構造
 ```
+:h
+-> lua-guide の項目に次の図がある
+
 ~/.config/nvim
 |-- after/
 |-- ftplugin/

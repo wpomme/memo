@@ -21,6 +21,13 @@ man nvim
 # キーの表記法(Key Notation) を確認する
 :h key-notation
 
+# vim.keymap.set へ移動するには
+<- :h -> lua の項目だった
+1. :h | only
+2. -> vim-script の項目へ移動する
+    - vim が付くものはvim-script の領域みたい
+3. keymap で検索して、ジャンプしていけば、vim.keymap.set のドキュメントに辿り着く
+
 # 定義へ移動、元のページに戻る
 ## Ctrl+] でそのキーワードの詳細へ移動する
 ## Ctrl+T, Ctrl+O で元の場所に戻る

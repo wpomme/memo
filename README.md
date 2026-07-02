@@ -4,9 +4,15 @@
 ## 当分後の方で良さそう
 ## TODO
 memo <word> でそのまま全文表示できる機能
+# -> 文字列のサニタイズが必要
 memo read <word> で表示したmdファイルに色をつける機能
 memo help / -h コマンド
 memo grep   # docs 以下について、そのキーワードで全文検索をかける
+memo edit <word> <word> の編集をする
+
+## 集計情報
+memo の一覧を集めたファイルや、memo を参照した日付などの情報を入れておく場所
+
 
 ## タスクランナー
 レコードサイトをみてmise.tomlとRakefileを連携させる

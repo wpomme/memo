@@ -4,5 +4,6 @@
     - zsh のauto-completion がとても便利
     - memo の cli を作成するときに利用できそう
 
-- JSDoc のこと
-    - JSDoc の形式とか
+- 自分独自のコマンドの解説をする場所
+    - 作っておいて忘れたりするので
+    - coc の補完とか alias とか
